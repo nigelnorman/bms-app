@@ -1,1 +1,20 @@
-<p>user-list works!</p>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Business</td>
+                <td>Active</td>    
+            </tr>        
+        </thead>
+        <tbody>
+            <tr *ngFor="let usr of users">
+                <td [(ngModel)]="usr.firstName"></td>
+                <td [(ngModel)]="usr.lastName"></td>
+                <td [(ngModel)]="usr.business.name"></td>
+                <td [(ngModel)]="usr.active"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

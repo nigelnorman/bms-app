@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../api/src/services';
+import { UserViewModel } from '../api/src/models';
 
 @Component({
   selector: 'app-user-list',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  constructor() { }
+  public users: UserViewModel[];
+
+  constructor( private readonly usersEndpointService: UsersService) { 
+
+  }
 
   ngOnInit() {
+    this.loadUsers();
+  }
+
+  private loadUsers = async () => {
+    this.users = await this.usersEndpointService.Get().toPromise();
   }
 
 }
