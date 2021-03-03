@@ -27,7 +27,8 @@ fi
 export BRANCH=${DRONE_BRANCH:-"local"}
 export SWAGGER_GENERATE=`which ng-swagger-gen`
 
-export URL_MASTER="https://api.bms.com/swagger/v1/swagger.json"
+#export URL_MASTER="https://api.sms.com/swagger/v1/swagger.json"
+export URL_MASTER="https://localhost:5001/swagger/v1/swagger.json"
 
 export URL_LOCAL="https://localhost:5001/swagger/v1/swagger.json"
 

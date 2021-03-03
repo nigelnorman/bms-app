@@ -1,0 +1,40 @@
+<router-outlet></router-outlet>
+
+<div class="card" *ngIf="route.children.length === 0">
+  <div class="card-header text-center">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <button class="btn btn-primary" (click)="newStudent()">
+          <i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp;Add Student </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <clr-datagrid>
+      <clr-dg-column></clr-dg-column>
+      <clr-dg-column>First Name</clr-dg-column>
+      <clr-dg-column>Middle Name</clr-dg-column>
+      <clr-dg-column>Last Name</clr-dg-column>
+      <clr-dg-column>Email</clr-dg-column>
+      <clr-dg-column></clr-dg-column>
+      <clr-dg-row *clrDgItems="let student of students">
+          <clr-dg-cell>
+            <clr-icon shape="trash" (click)="deleteStudent(student.id)" aria-hidden="true"></clr-icon>
+          </clr-dg-cell>
+          <clr-dg-cell>{{student.firstName}}</clr-dg-cell>
+          <clr-dg-cell>{{student.middleName}}</clr-dg-cell>
+          <clr-dg-cell>{{student.lastName}}</clr-dg-cell>
+          <clr-dg-cell>{{student.email}}</clr-dg-cell>
+          <clr-dg-cell>
+            <clr-icon shape="pencil" (click)="editStudent(student.id)" aria-hidden="true"></clr-icon>
+          </clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+            of {{pagination.totalItems}} students
+        </clr-dg-pagination>
+    </clr-dg-footer>
+    </clr-datagrid>
+  </div>
+</div>

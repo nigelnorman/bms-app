@@ -3,10 +3,10 @@
 . "$(dirname "$0")"/env.sh
 
 if [ "$BRANCH" = "local" ] && [ "$DOTNET_RUN" = "true" ]; then
-  API_DIR=${API_DIR:-"../bms-api"}
+  API_DIR=${API_DIR:-"../sms-api"}
 
   echo "Running API from $API_DIR"
-  dotnet run --configuration Release --project "$API_DIR/src/Bms.Api/Bms.Api.csproj" &
+  dotnet run --configuration Release --project "$API_DIR/src/Sms.Api/Sms.Api.csproj" &
   API_PID=$!
 
   echo "Waiting for API to be available at: $URL_LOCAL ($API_PID)"

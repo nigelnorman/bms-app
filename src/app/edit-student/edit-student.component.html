@@ -1,0 +1,45 @@
+<div class="clr-row" *ngIf="student !== undefined">
+  <div class="clr-col-lg-6 clr-col-md-12 clr-col-12">
+    <form class="clr-form clr-form-horizontal" clr-layout="horizontal" name="editStudent">
+      <div class="clr-form-control">
+        <label for="first" class="clr-control-label">First</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input #first="ngModel" type="text" id="first" name="first" placeholder="First Name" class="clr-input" [(ngModel)]="student.firstName" required/>
+            <clr-icon *ngIf="first.invalid && (first.dirty || first.touched)" class="is-error" shape="info-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control">
+        <label for="middle" class="clr-control-label">Middle</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input type="text" id="middle" name="middle" placeholder="Middle Name" class="clr-input" [(ngModel)]="student.middleName"/>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control">
+        <label for="last" class="clr-control-label">Last</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input #last="ngModel" type="text" id="last" name="last" placeholder="Last Name" class="clr-input" [(ngModel)]="student.lastName" required/>
+            <clr-icon *ngIf="last.invalid && (last.dirty || last.touched)" class="is-error" shape="info-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control">
+        <label for="email" class="clr-control-label">Email</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input #email="ngModel" type="email" id="email" name="email" placeholder="Email" class="clr-input" [(ngModel)]="student.email" required/>
+            <clr-icon *ngIf="email.invalid && (email.dirty || email.touched)" class="is-error" shape="info-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+    </form>
+    <app-book-list [bookslist]="student.favoriteBooksList"></app-book-list>
+    <div class="text-right">
+      <button type="submit" (click)="saveStudentInfo()" class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+</div>

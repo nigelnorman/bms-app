@@ -7,15 +7,16 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { StudentViewModel } from '../models/student-view-model';
 @Injectable({
   providedIn: 'root',
 })
-class ValuesService extends __BaseService {
-  static readonly getApiValuesPath = '/api/Values';
-  static readonly postApiValuesPath = '/api/Values';
-  static readonly getApiValuesIdPath = '/api/Values/{id}';
-  static readonly putApiValuesIdPath = '/api/Values/{id}';
-  static readonly deleteApiValuesIdPath = '/api/Values/{id}';
+class StudentsService extends __BaseService {
+  static readonly getApiStudentsPath = '/api/Students';
+  static readonly postApiStudentsPath = '/api/Students';
+  static readonly getApiStudentsIdPath = '/api/Students/{id}';
+  static readonly putApiStudentsIdPath = '/api/Students/{id}';
+  static readonly deleteApiStudentsIdPath = '/api/Students/{id}';
 
   constructor(
     config: __Configuration,
@@ -28,14 +29,14 @@ class ValuesService extends __BaseService {
    * @param api-version undefined
    * @return Success
    */
-  getApiValuesResponse(apiVersion?: string): __Observable<__StrictHttpResponse<Array<string>>> {
+  getApiStudentsResponse(apiVersion?: string): __Observable<__StrictHttpResponse<Array<StudentViewModel>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     if (apiVersion != null) __params = __params.set('api-version', apiVersion.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/Values`,
+      this.rootUrl + `/api/Students`,
       __body,
       {
         headers: __headers,
@@ -46,7 +47,7 @@ class ValuesService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<string>>;
+        return _r as __StrictHttpResponse<Array<StudentViewModel>>;
       })
     );
   }
@@ -54,20 +55,20 @@ class ValuesService extends __BaseService {
    * @param api-version undefined
    * @return Success
    */
-  getApiValues(apiVersion?: string): __Observable<Array<string>> {
-    return this.getApiValuesResponse(apiVersion).pipe(
-      __map(_r => _r.body as Array<string>)
+  getApiStudents(apiVersion?: string): __Observable<Array<StudentViewModel>> {
+    return this.getApiStudentsResponse(apiVersion).pipe(
+      __map(_r => _r.body as Array<StudentViewModel>)
     );
   }
 
   /**
-   * @param params The `ValuesService.PostApiValuesParams` containing the following parameters:
+   * @param params The `StudentsService.PostApiStudentsParams` containing the following parameters:
    *
    * - `body`:
    *
    * - `api-version`:
    */
-  postApiValuesResponse(params: ValuesService.PostApiValuesParams): __Observable<__StrictHttpResponse<null>> {
+  postApiStudentsResponse(params: StudentsService.PostApiStudentsParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -75,7 +76,7 @@ class ValuesService extends __BaseService {
     if (params.apiVersion != null) __params = __params.set('api-version', params.apiVersion.toString());
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/Values`,
+      this.rootUrl + `/api/Students`,
       __body,
       {
         headers: __headers,
@@ -91,20 +92,20 @@ class ValuesService extends __BaseService {
     );
   }
   /**
-   * @param params The `ValuesService.PostApiValuesParams` containing the following parameters:
+   * @param params The `StudentsService.PostApiStudentsParams` containing the following parameters:
    *
    * - `body`:
    *
    * - `api-version`:
    */
-  postApiValues(params: ValuesService.PostApiValuesParams): __Observable<null> {
-    return this.postApiValuesResponse(params).pipe(
+  postApiStudents(params: StudentsService.PostApiStudentsParams): __Observable<null> {
+    return this.postApiStudentsResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
 
   /**
-   * @param params The `ValuesService.GetApiValuesIdParams` containing the following parameters:
+   * @param params The `StudentsService.GetApiStudentsIdParams` containing the following parameters:
    *
    * - `id`:
    *
@@ -112,7 +113,7 @@ class ValuesService extends __BaseService {
    *
    * @return Success
    */
-  getApiValuesIdResponse(params: ValuesService.GetApiValuesIdParams): __Observable<__StrictHttpResponse<string>> {
+  getApiStudentsIdResponse(params: StudentsService.GetApiStudentsIdParams): __Observable<__StrictHttpResponse<StudentViewModel>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -120,23 +121,23 @@ class ValuesService extends __BaseService {
     if (params.apiVersion != null) __params = __params.set('api-version', params.apiVersion.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/Values/${params.id}`,
+      this.rootUrl + `/api/Students/${params.id}`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'text'
+        responseType: 'json'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<string>;
+        return _r as __StrictHttpResponse<StudentViewModel>;
       })
     );
   }
   /**
-   * @param params The `ValuesService.GetApiValuesIdParams` containing the following parameters:
+   * @param params The `StudentsService.GetApiStudentsIdParams` containing the following parameters:
    *
    * - `id`:
    *
@@ -144,22 +145,24 @@ class ValuesService extends __BaseService {
    *
    * @return Success
    */
-  getApiValuesId(params: ValuesService.GetApiValuesIdParams): __Observable<string> {
-    return this.getApiValuesIdResponse(params).pipe(
-      __map(_r => _r.body as string)
+  getApiStudentsId(params: StudentsService.GetApiStudentsIdParams): __Observable<StudentViewModel> {
+    return this.getApiStudentsIdResponse(params).pipe(
+      __map(_r => _r.body as StudentViewModel)
     );
   }
 
   /**
-   * @param params The `ValuesService.PutApiValuesIdParams` containing the following parameters:
+   * @param params The `StudentsService.PutApiStudentsIdParams` containing the following parameters:
    *
    * - `id`:
    *
    * - `body`:
    *
    * - `api-version`:
+   *
+   * @return Success
    */
-  putApiValuesIdResponse(params: ValuesService.PutApiValuesIdParams): __Observable<__StrictHttpResponse<null>> {
+  putApiStudentsIdResponse(params: StudentsService.PutApiStudentsIdParams): __Observable<__StrictHttpResponse<StudentViewModel>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -168,7 +171,7 @@ class ValuesService extends __BaseService {
     if (params.apiVersion != null) __params = __params.set('api-version', params.apiVersion.toString());
     let req = new HttpRequest<any>(
       'PUT',
-      this.rootUrl + `/api/Values/${params.id}`,
+      this.rootUrl + `/api/Students/${params.id}`,
       __body,
       {
         headers: __headers,
@@ -179,33 +182,35 @@ class ValuesService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<null>;
+        return _r as __StrictHttpResponse<StudentViewModel>;
       })
     );
   }
   /**
-   * @param params The `ValuesService.PutApiValuesIdParams` containing the following parameters:
+   * @param params The `StudentsService.PutApiStudentsIdParams` containing the following parameters:
    *
    * - `id`:
    *
    * - `body`:
    *
    * - `api-version`:
+   *
+   * @return Success
    */
-  putApiValuesId(params: ValuesService.PutApiValuesIdParams): __Observable<null> {
-    return this.putApiValuesIdResponse(params).pipe(
-      __map(_r => _r.body as null)
+  putApiStudentsId(params: StudentsService.PutApiStudentsIdParams): __Observable<StudentViewModel> {
+    return this.putApiStudentsIdResponse(params).pipe(
+      __map(_r => _r.body as StudentViewModel)
     );
   }
 
   /**
-   * @param params The `ValuesService.DeleteApiValuesIdParams` containing the following parameters:
+   * @param params The `StudentsService.DeleteApiStudentsIdParams` containing the following parameters:
    *
    * - `id`:
    *
    * - `api-version`:
    */
-  deleteApiValuesIdResponse(params: ValuesService.DeleteApiValuesIdParams): __Observable<__StrictHttpResponse<null>> {
+  deleteApiStudentsIdResponse(params: StudentsService.DeleteApiStudentsIdParams): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -213,7 +218,7 @@ class ValuesService extends __BaseService {
     if (params.apiVersion != null) __params = __params.set('api-version', params.apiVersion.toString());
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/api/Values/${params.id}`,
+      this.rootUrl + `/api/Students/${params.id}`,
       __body,
       {
         headers: __headers,
@@ -229,53 +234,53 @@ class ValuesService extends __BaseService {
     );
   }
   /**
-   * @param params The `ValuesService.DeleteApiValuesIdParams` containing the following parameters:
+   * @param params The `StudentsService.DeleteApiStudentsIdParams` containing the following parameters:
    *
    * - `id`:
    *
    * - `api-version`:
    */
-  deleteApiValuesId(params: ValuesService.DeleteApiValuesIdParams): __Observable<null> {
-    return this.deleteApiValuesIdResponse(params).pipe(
+  deleteApiStudentsId(params: StudentsService.DeleteApiStudentsIdParams): __Observable<null> {
+    return this.deleteApiStudentsIdResponse(params).pipe(
       __map(_r => _r.body as null)
     );
   }
 }
 
-module ValuesService {
+module StudentsService {
 
   /**
-   * Parameters for postApiValues
+   * Parameters for postApiStudents
    */
-  export interface PostApiValuesParams {
-    body?: string;
+  export interface PostApiStudentsParams {
+    body?: StudentViewModel;
     apiVersion?: string;
   }
 
   /**
-   * Parameters for getApiValuesId
+   * Parameters for getApiStudentsId
    */
-  export interface GetApiValuesIdParams {
+  export interface GetApiStudentsIdParams {
     id: number;
     apiVersion?: string;
   }
 
   /**
-   * Parameters for putApiValuesId
+   * Parameters for putApiStudentsId
    */
-  export interface PutApiValuesIdParams {
+  export interface PutApiStudentsIdParams {
     id: number;
-    body?: string;
+    body?: StudentViewModel;
     apiVersion?: string;
   }
 
   /**
-   * Parameters for deleteApiValuesId
+   * Parameters for deleteApiStudentsId
    */
-  export interface DeleteApiValuesIdParams {
+  export interface DeleteApiStudentsIdParams {
     id: number;
     apiVersion?: string;
   }
 }
 
-export { ValuesService }
+export { StudentsService }

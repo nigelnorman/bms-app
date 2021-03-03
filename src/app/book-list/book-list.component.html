@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header">Favorite Books</div>
+  <div class="card-block">
+    <ul class="list-unstyled">
+      <li *ngFor="let book of bookslist">
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <clr-icon shape="times-circle" (click)="removeBook(book.title)"></clr-icon>
+            {{book.title}}
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="clr-form-control">
+      <div class="clr-control-container">
+        <div class="clr-input-wrapper">
+          <clr-icon shape="plus-circle" (click)="addBook()"></clr-icon>
+          <input type="text" class="clr-input" [(ngModel)]="newBook.title"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
