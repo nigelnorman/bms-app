@@ -31,7 +31,7 @@
         <label for="email" class="clr-control-label">Email</label>
         <div class="clr-control-container">
           <div class="clr-input-wrapper">
-            <input #email="ngModel" type="email" id="email" name="email" placeholder="Email" class="clr-input" [(ngModel)]="newStudent.email" required/>
+            <input #email="ngModel" type="email" id="email" name="email" placeholder="Email" class="clr-input" [(ngModel)]="newStudent.email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
             <clr-icon *ngIf="email.invalid && (email.dirty || email.touched)" class="is-error" shape="info-circle" help="this field is required"></clr-icon>
           </div>
         </div>
@@ -39,7 +39,7 @@
     </form>
     <app-book-list [bookslist]="newStudent.favoriteBooksList"></app-book-list>
     <div class="text-right">
-      <button type="submit" (click)="saveNewUser()" class="btn btn-primary">Submit</button>
+      <button type="submit" (click)="saveNewUser()" [disabled]="email.invalid || first.invalid || last.invalid" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </div>
