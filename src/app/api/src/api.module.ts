@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationInterface } from './api-configuration';
 
 import { StudentsService } from './services/students.service';
-import { ValuesService } from './services/values.service';
 
 /**
  * Provider for all Api services, plus ApiConfiguration
@@ -19,8 +18,7 @@ import { ValuesService } from './services/values.service';
   declarations: [],
   providers: [
     ApiConfiguration,
-    StudentsService,
-    ValuesService
+    StudentsService
   ],
 })
 export class ApiModule {
